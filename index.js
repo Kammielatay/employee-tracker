@@ -21,6 +21,85 @@ connection.connect(function (err) {
   start();
 });
 
-function start (){
-  
+function start() {
+  inquirer
+    .prompt({
+      name: "action",
+      type: "rawlist",
+      message: "What would you like to do?",
+      choices: [
+        "View Department",
+        "View Role",
+        "View Employees",
+        "Add Department",
+        "Add Roles",
+        "Add Employees",
+        "Update Employee Roles",
+        "Exit"
+      ]
+    })
+    .then(function (answer) {
+      switch (answer.action) {
+        case "View Department":
+          viewDepartment();
+          break; 
+        
+        case "View Role":
+          viewRole();
+          break;
+
+        case "View Employees":
+          viewEmployee();
+          break;
+
+        case "Add Department":
+          addDepartment();
+          break;
+
+        case "Add Roles":
+          addRoles();
+          break;
+
+        case "Add Employees":
+          addEmployees();
+          break;
+
+        case "Update Employee Roles":
+          updateEmployee();
+          break;
+
+        case "exit":
+          connection.end();
+          break;
+      }
+    });
 }
+
+function viewDepartment() {
+    var query = "SELECT * FROM department";
+    connection.query(query, function (err, res) {
+      if (err) throw err;
+      console.table(res);
+      start();
+  });  
+}
+
+function viewRole() {
+  var query = "SELECT * FROM role";
+  connection.query(query, function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    start();
+  });  
+}
+
+function viewEmployee() {
+  var query = "SELECT * FROM employee";
+  connection.query(query, function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    start();
+  }); 
+}
+
+
