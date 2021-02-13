@@ -95,7 +95,7 @@ function viewRole() {
 }
 
 function viewEmployee() {
-  var query = "SELECT role_id, first_name, last_name, title, department_name, salary FROM employee INNER JOIN role ON employee.role_id = role.id INNER JOIN department ON role.department_id = department.id"
+  var query = "SELECT employee.id, first_name, last_name, title, department_name, salary FROM employee INNER JOIN role ON employee.role_id = role.id INNER JOIN department ON role.department_id = department.id"
   connection.query(query, function (err, res) {
     if (err) throw err;
     console.table(res);
