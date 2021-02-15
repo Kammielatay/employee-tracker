@@ -31,7 +31,7 @@ Because this application cannot be deployed on Github, you will find a walk thro
 2) Open folder in your editor of choice (VSC, Sublime, etc.) 
 
 ## Usage
-
+![MySQL Demo](https://j.gifs.com/GvDwQ0.gif)
 
 ## License
 Distributed under the [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) License. See [OpenSource.org](https://opensource.org/licenses) for more information.

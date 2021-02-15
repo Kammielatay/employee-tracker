@@ -71,7 +71,7 @@ function start() {
           updateEmployee();
           break;
 
-        case "exit":
+        case "Exit":
           connection.end();
           break;
       }
@@ -119,7 +119,7 @@ function viewRole() {
 
 function viewEmployee() {
   var query = `
-  SELECT employee.id, first_name, last_name, title, salary, department_name, manager_id 
+  SELECT employee.id, first_name, last_name, title, salary, department_name
   FROM employee 
   INNER JOIN role 
   ON employee.role_id = role.id 
@@ -217,23 +217,24 @@ function addEmployees() {
               arrayOfChoices.push(res[i].title);
             }
             return arrayOfChoices;
-          }
+          },
         },
         {
           name: "manager_id",
-          type: "list",
+          type: "input",
           message: "What is the manager's role ID?",
-          choices: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         }
       ])
       .then(function (answer) {
 
         let role = roleOption(departments, answer);
+        //console.log(JSON.stringify(answer, null, "  "));
 
         // need to convert appropriate answer.role_id into the appropriate int to match employee role.id
         let query = `
           INSERT INTO employee (first_name, last_name, role_id, manager_id) 
           VALUES (?,?,?,?)`;
+
 
         connection.query(query, [answer.first_name, answer.second_name, role, answer.manager_id], function (err) {
           if (err) throw err;
